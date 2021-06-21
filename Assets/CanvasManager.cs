@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using UnityEditor;
 #endif
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using TMPro;
 public class CanvasManager : MonoBehaviour
 {
+    [SerializeField]
+    TMP_InputField playerName;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerName.text = DataPlayer.Instance.playerName;
     }
 
     // Update is called once per frame
@@ -18,7 +21,10 @@ public class CanvasManager : MonoBehaviour
     {
         
     }
-
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Playing");
+    }
     public void ExitGame()
     {
 #if UNITY_EDITOR
