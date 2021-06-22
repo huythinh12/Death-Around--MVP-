@@ -19,6 +19,7 @@ public class CanvasManager : MonoBehaviour
         txtHightScore.text = DataPlayer.Instance.score.ToString();
     }
 
+    //will call when click Start button
     public void StartGame()
     {
         SceneManager.LoadScene("Playing");

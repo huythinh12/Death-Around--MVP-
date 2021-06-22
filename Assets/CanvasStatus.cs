@@ -12,14 +12,20 @@ public class CanvasStatus : MonoBehaviour
     [SerializeField]
     TMP_Text txtLevel;
 
-    private void HandleStatus(string playerName,int score,int health,int level)
+    private void Start()
     {
-        print(health);
-        txtPlayerName.SetText(playerName);
+        //get name to show up on UI
+        txtPlayerName.text = DataPlayer.Instance.playerName;
+    }
+
+    //Set value from GameManager to show up on UI
+    private void HandleStatus(int score,int health,int level)
+    {
         txtHealth.text = health.ToString();
         txtScore.text = "Score: " + score.ToString();
         txtLevel.text = "Level: " + level.ToString();
     }
+
     private void OnEnable()
     {
         GameManger.EventOnStatus += HandleStatus;

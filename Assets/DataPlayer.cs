@@ -17,8 +17,11 @@ public class DataPlayer : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        //load data when awake
         LoadPlayerData();
     }
+
+    //this is call from inputfield
     public void EnterPlayerName(string name)
     {
         playerName = name;
@@ -63,8 +66,9 @@ public class DataPlayer : MonoBehaviour
         }
 
     }
+
     [Serializable]
-    public class Player// this is data from player for save to database
+    public class Player// initialize data player for json
     {
         public string playerName = "";
         public int score = 0;

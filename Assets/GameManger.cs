@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameManger : MonoBehaviour
 {
     [SerializeField]
-    private string playerName;
-    [SerializeField]
     private int score;
     [SerializeField]
     private int health;
@@ -16,12 +14,13 @@ public class GameManger : MonoBehaviour
     private int level;
 
     //Event for handle to CanvasStatus
-    public static event Action<string,int,int,int> EventOnStatus;
+    public static event Action<int,int,int> EventOnStatus;
+
     // Start is called before the first frame update
     private void Start()
     {
-        playerName = DataPlayer.Instance.playerName;
-        EventOnStatus?.Invoke(playerName, score, health,level);
+        //setup event with 3 value 
+        EventOnStatus?.Invoke(score, health,level);
     }
 
     public void GameFinished()
