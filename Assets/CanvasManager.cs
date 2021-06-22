@@ -9,9 +9,9 @@ using TMPro;
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField]
-    TMP_InputField playerName;
+    private TMP_InputField playerName;
     [SerializeField]
-    TMP_Text txtHightScore;
+    private TMP_Text txtHightScore;
     // Start is called before the first frame update
     void Start()
     {

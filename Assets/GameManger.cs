@@ -19,6 +19,7 @@ public class GameManger : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+ 
         //setup event with 3 value 
         EventOnStatus?.Invoke(score, health,level);
     }

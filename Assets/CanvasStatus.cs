@@ -14,12 +14,15 @@ public class CanvasStatus : MonoBehaviour
 
     private void Start()
     {
-        //get name to show up on UI
-        txtPlayerName.text = DataPlayer.Instance.playerName;
+        if (DataPlayer.Instance)
+        {
+            //get name to show up on UI
+            txtPlayerName.text = DataPlayer.Instance.playerName;
+        }
     }
 
     //Set value from GameManager to show up on UI
-    private void HandleStatus(int score,int health,int level)
+    private void HandleStatus(int score, int health, int level)
     {
         txtHealth.text = health.ToString();
         txtScore.text = "Score: " + score.ToString();
