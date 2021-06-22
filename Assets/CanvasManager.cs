@@ -10,21 +10,21 @@ public class CanvasManager : MonoBehaviour
 {
     [SerializeField]
     TMP_InputField playerName;
+    [SerializeField]
+    TMP_Text txtHightScore;
     // Start is called before the first frame update
     void Start()
     {
         playerName.text = DataPlayer.Instance.playerName;
+        txtHightScore.text = DataPlayer.Instance.score.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void StartGame()
     {
         SceneManager.LoadScene("Playing");
     }
+
+
     public void ExitGame()
     {
 #if UNITY_EDITOR

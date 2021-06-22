@@ -300,6 +300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbc3b31af43de847a88a69ffe52d229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerName: 
+  score: 5
+  health: 3
+  level: 1
 --- !u!1 &106069772
 GameObject:
   m_ObjectHideFlags: 0
@@ -3774,6 +3778,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   txtPlayerName: {fileID: 1693581341}
+  txtScore: {fileID: 2096727441}
+  txtHealth: {fileID: 318668632}
+  txtLevel: {fileID: 92771448}
 --- !u!1 &1670414296
 GameObject:
   m_ObjectHideFlags: 0
@@ -3942,8 +3949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -815, y: 509}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -866, y: 509}
+  m_SizeDelta: {x: 98, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1693581341
 MonoBehaviour:
@@ -3999,7 +4006,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 2
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
