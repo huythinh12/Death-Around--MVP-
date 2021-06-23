@@ -28,7 +28,8 @@ public class Enemy : GameManger
         }
         else
         {
-            rb.AddForce(direction.normalized * speed);
+            if (Time.timeScale != 0)
+                rb.AddForce(direction.normalized * speed);
         }
 
         //check if item Explosion active then get effect
