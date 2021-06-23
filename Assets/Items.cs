@@ -18,6 +18,7 @@ public class Items : GameManger
     }
     private void Update()
     {
+        //check condition for destroy item
         if (!isGameActive || transform.position.y < -9)
         {
             Destroy(gameObject);
@@ -25,6 +26,7 @@ public class Items : GameManger
     }
     private void OnTriggerEnter(Collider other)
     {
+        //check condition when mouse hit item 
         if (other.CompareTag("Mouse"))
         {
             if (transform.name.StartsWith("Lucky"))
