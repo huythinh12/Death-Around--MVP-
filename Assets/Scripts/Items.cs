@@ -15,7 +15,7 @@ public class Items : GameManger
     // Start is called before the first frame update
     void Start()
     {
-        if (isGameActive && health > 0)
+        if (isGameActive)
         {
             soundItem.PlayOneShot(onPickUpItem, 1);
             itemRb = GetComponent<Rigidbody>();

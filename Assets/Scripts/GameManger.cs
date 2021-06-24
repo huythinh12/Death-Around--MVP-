@@ -160,7 +160,9 @@ public class GameManger : MonoBehaviour
         while (isGameActive && health > 0)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(minRate, maxRate));
-            //yield return new WaitForSeconds(1);
+            //check delay update to prevent timeout asynchronus
+            yield return null;
+            if (!isGameActive) break;
             var randomItemState = UnityEngine.Random.Range(0, 3);
             Instantiate(items[randomItemState], transform.position, Quaternion.identity);
         }
@@ -244,9 +246,11 @@ public class GameManger : MonoBehaviour
 
     private void Update()
     {
+       
         //if what happening change this will update
         if (isChange)
         {
+            if (health <= 0) { isGameActive = false; Destroy(player); };
             EventOnStatus?.Invoke(score, health, Level);
             isExplosion = false;
             isChange = false;
