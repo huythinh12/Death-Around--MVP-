@@ -24,7 +24,7 @@ public class CanvasManager : MonoBehaviour
     private DataPlayer dataPlayer;
     [SerializeField]
     private Slider sliderVolume;
-    private int difficultySelect;
+    private int difficultySelect = 1;
     private float volume;
 
     // Start is called before the first frame update

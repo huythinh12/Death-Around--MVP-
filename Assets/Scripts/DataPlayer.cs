@@ -9,11 +9,12 @@ public class DataPlayer : MonoBehaviour
     public string playerName;
     [HideInInspector]
     public int score;
-    public int difficulty = 1;
+    public int difficulty;
     public float volume;
 
     private void Awake()
     {
+        difficulty = 1;
         if (Instance != null)
         {
             Destroy(gameObject);

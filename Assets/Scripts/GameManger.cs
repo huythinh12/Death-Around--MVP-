@@ -229,7 +229,7 @@ public class GameManger : MonoBehaviour
         }
     }
 
-    private void RandomTypeEnemy(int enemy1,int enemy2)
+    private void RandomTypeEnemy(int enemy1, int enemy2)
     {
         if (UnityEngine.Random.Range(0, 2) == 1)
         {
@@ -271,8 +271,12 @@ public class GameManger : MonoBehaviour
 
     public void GameFinished()
     {
-        DataPlayer.Instance.score = score;
-        DataPlayer.Instance.SavePlayerData();
+        if (score > DataPlayer.Instance.score)
+        {
+            DataPlayer.Instance.score = score;
+            DataPlayer.Instance.SavePlayerData();
+
+        }
         EventOnCanvasController?.Invoke(health, isGameComplete);
     }
 
