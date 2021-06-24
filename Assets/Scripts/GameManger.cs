@@ -26,6 +26,10 @@ public class GameManger : MonoBehaviour
     private List<Enemy> enemys = new List<Enemy>();
     [SerializeField]
     private List<Items> items = new List<Items>();
+    [SerializeField]
+    private AudioSource musicBG;
+    private DataPlayer dataPlayer;
+
     //Field
     private int Level { set; get; }
     private int secondCountdown;
@@ -55,11 +59,46 @@ public class GameManger : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //all set default hear 
-        secondCountdown = 20;
+        dataPlayer = FindObjectOfType<DataPlayer>();
+        SetDifficulty();
+
+        //Set value to UI when it begin  
+        EventOnStatus?.Invoke(score, health, Level);
+
+        //Start Game and get countdown time
+        StartCoroutine(CountDown());
+    }
+    private void SetDifficulty()
+    {
+        int healthDifficulty;
+        if (dataPlayer.difficulty == 1)
+        {
+            healthDifficulty = 10;
+            SetDefaultValue(healthDifficulty);
+        }
+        else if (dataPlayer.difficulty == 2)
+        {
+            healthDifficulty = 7;
+            SetDefaultValue(healthDifficulty);
+        }
+        else if (dataPlayer.difficulty == 3)
+        {
+            healthDifficulty = 5;
+            SetDefaultValue(healthDifficulty);
+
+        }
+    }
+    private void SetDefaultValue(int healthDifficulty)
+    {
+        //All set default hear
+        //music background
+        //soundPlaying.volume = DataPlayer.Instance.volume;
+        musicBG.volume = dataPlayer.volume;
+
+        secondCountdown = 31;
         //for state ui
         Level = 1;
-        health = 3;
+        health = healthDifficulty;
         score = 0;
         //for enemy value
         enemySpeed = 2;
@@ -70,14 +109,11 @@ public class GameManger : MonoBehaviour
         maxRate = 10;
         //other 
         waitToStart = 1;
-        //Set value to UI when it begin  
-        EventOnStatus?.Invoke(score, health, Level);
-        StartCoroutine(CountDown());
     }
 
     IEnumerator CountDown()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
         var waitTime = new WaitForSeconds(1);
         var saveSecond = secondCountdown;
         isGameActive = true;
@@ -170,26 +206,39 @@ public class GameManger : MonoBehaviour
                 enemyIndex = (int)EnemyState.Easy;
                 break;
             case 2:
-                rateSpawn = 1.5f;
                 enemyIndex = (int)EnemyState.Easy;
+                rateSpawn = 1.5f;
                 break;
             case 3://this is boss
-                enemySpeed = 2.5f;
+                enemyIndex = (int)EnemyState.Strong;
                 rateSpawn = 1;
-                enemyIndex = (int)EnemyState.Normal;
+                enemySpeed = 2.5f;
                 break;
             case 4:
+                RandomTypeEnemy((int)EnemyState.Easy, (int)EnemyState.Normal);
                 enemySpeed = 2.8f;
-                enemyIndex = (int)EnemyState.Normal;
                 break;
             case 5:
-                enemyIndex = (int)EnemyState.Strong;
+                RandomTypeEnemy((int)EnemyState.Strong, (int)EnemyState.Normal);
                 break;
             default://this is boss
                 rateSpawn = 0.8f;
                 enemySpeed = 3;
                 enemyIndex = (int)EnemyState.Boss;
                 break;
+        }
+    }
+
+    private void RandomTypeEnemy(int enemy1,int enemy2)
+    {
+        if (UnityEngine.Random.Range(0, 2) == 1)
+        {
+            enemyIndex = enemy1;
+
+        }
+        else
+        {
+            enemyIndex = enemy2;
         }
     }
 

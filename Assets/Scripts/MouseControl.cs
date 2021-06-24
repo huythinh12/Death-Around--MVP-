@@ -9,7 +9,11 @@ public class MouseControl : GameManger
     private TrailRenderer trail;
     private BoxCollider collider;
     private bool swiping = false;
-    private RaycastHit hit;
+    private RaycastHit hit;//test with raycast
+    [SerializeField]
+    private AudioSource mouseSound;
+    [SerializeField]
+    private AudioClip onPickUpMouse;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +45,7 @@ public class MouseControl : GameManger
             return;
         }
 
-        //Test with raycast but still fail when it goes too fast
+        //---Test with raycast but still fail when it goes too fast----
         //var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         //if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         //{
@@ -58,6 +62,7 @@ public class MouseControl : GameManger
             //when mouse down turn on trail and collider along with update mouse position
             swiping = true;
             UpdateComponent();
+            mouseSound.PlayOneShot(onPickUpMouse, 1);
         }
         else if (Input.GetMouseButtonUp(0))
         {

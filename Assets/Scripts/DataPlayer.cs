@@ -7,9 +7,10 @@ public class DataPlayer : MonoBehaviour
 {
     public static DataPlayer Instance;
     public string playerName;
+    [HideInInspector]
     public int score;
-    public int difficulty;
-    public AudioSource msxBG;
+    public int difficulty = 1;
+    public float volume;
 
     private void Awake()
     {
@@ -23,20 +24,12 @@ public class DataPlayer : MonoBehaviour
         //load data when awake
         LoadPlayerData();
     }
-    private void Start()
-    {
-        msxBG = GetComponent<AudioSource>();
-    }
     //this is call from inputfield
     public void EnterPlayerName(string name)
     {
         playerName = name;
     }
- 
-    public void SaveDifficulty(int difficulty)
-    {
-        this.difficulty = difficulty;
-    }
+
     public void SavePlayerData()
     {
         //check all progressing when write file data to system

@@ -21,7 +21,7 @@ public class CanvasStatus : MonoBehaviour
         }
     }
 
-    //Set value from GameManager to show up on UI
+    //Value updated from GameManager to show up on UI
     private void HandleStatus(int score, int health, int level)
     {
         if (health < 0)

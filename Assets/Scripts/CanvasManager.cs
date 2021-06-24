@@ -18,6 +18,9 @@ public class CanvasManager : MonoBehaviour
     [SerializeField]
     private GameObject canvasOption;
     [SerializeField]
+    private GameObject canvasTutorial;
+    [SerializeField]
+    private AudioSource musicBG;
     private DataPlayer dataPlayer;
     [SerializeField]
     private Slider sliderVolume;
@@ -29,6 +32,14 @@ public class CanvasManager : MonoBehaviour
     {
         playerName.text = DataPlayer.Instance.playerName;
         txtHightScore.text = DataPlayer.Instance.score.ToString();
+        dataPlayer = FindObjectOfType<DataPlayer>();
+
+        //set value volume default
+        if(dataPlayer.volume > 0)
+        {
+            musicBG.volume = dataPlayer.volume;
+            sliderVolume.value = dataPlayer.volume;
+        }
     }
 
     //will call when click Start button
@@ -42,11 +53,17 @@ public class CanvasManager : MonoBehaviour
         canvasMainStart.SetActive(false);
         canvasOption.SetActive(true);
     }
+    public void OnclickTutorial()
+    {
+        canvasMainStart.SetActive(false);
+        canvasTutorial.SetActive(true);
+    }
     public void SaveAndExit()
     {
         canvasOption.SetActive(false);
+        canvasTutorial.SetActive(false);
         canvasMainStart.SetActive(true);
-        dataPlayer.SaveDifficulty(difficultySelect);
+        dataPlayer.difficulty = difficultySelect;
     }
     public void Easy()
     {
@@ -64,7 +81,8 @@ public class CanvasManager : MonoBehaviour
     }
     public void ChangeVolume(float volume)
     {
-        dataPlayer.msxBG.volume = volume;
+        musicBG.volume = volume;
+        dataPlayer.volume = volume;
     }
 
     public void ExitGame()

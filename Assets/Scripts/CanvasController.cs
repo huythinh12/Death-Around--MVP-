@@ -12,6 +12,10 @@ public class CanvasController : MonoBehaviour
     private GameObject canvasCompleted;
     [SerializeField]
     private GameObject penalMenu;
+    [SerializeField]
+    private AudioSource soundGameFinish;
+    [SerializeField]
+    private AudioClip onPickUpGameOver , onPickUpGameCompleted;
     private void OnEnable()
     {
         GameManger.EventOnCanvasController += HandleCanvas;
@@ -24,10 +28,12 @@ public class CanvasController : MonoBehaviour
     {
         if (health <= 0)
         {
+            soundGameFinish.PlayOneShot(onPickUpGameOver, 1);
             canvasGamOver.SetActive(true);
         }
         else if (isGameComplete)
         {
+            soundGameFinish.PlayOneShot(onPickUpGameCompleted, 1);
             canvasCompleted.SetActive(true);
         }
     }

@@ -11,18 +11,21 @@ public class Enemy : GameManger
     public float speed;
     [HideInInspector]
     public Vector3 direction;
+    [SerializeField]
+    private GameObject effect;
     private bool isRunning = false;
     private Rigidbody rb;
-
+    private string nameEnemy;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        nameEnemy = transform.name;
     }
     private void Update()
     {
         if (!isGameActive && !isRunning)
         {
+            Instantiate(effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
             isRunning = true;
         }
@@ -38,6 +41,7 @@ public class Enemy : GameManger
             score++;
             isChange = true;
             isRunning = true;
+            Instantiate(effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -49,13 +53,14 @@ public class Enemy : GameManger
         {
             if (!isInvisible)
             {
-                health--;
+                GetDamgeWithTypeEnemy();
             }
             isChange = true;
             if (health <= 0)
             {
                 GameFinished();
             }
+            Instantiate(effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         //enemy collider with mouse
@@ -64,11 +69,53 @@ public class Enemy : GameManger
             healthEnemy--;
             if (healthEnemy <= 0)
             {
-                score++;
+                AddScoreWithTypeEnemy();
+
                 isChange = true;
+                Instantiate(effect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
     }
+    private void GetDamgeWithTypeEnemy()
+    {
+        if (nameEnemy.StartsWith("EasyEnemy"))
+        {
+            health--;
+        }
+        else if (nameEnemy.StartsWith("NormalEnemy"))
+        {
+            health-=2;
 
+        }
+        else if (nameEnemy.StartsWith("StrongEnemy"))
+        {
+            health-=3;
+
+        }
+        else if (nameEnemy.StartsWith("BossEnemy"))
+        {
+            health-=4;
+        }
+    }
+    private void AddScoreWithTypeEnemy()
+    {
+        if (nameEnemy.StartsWith("EasyEnemy"))
+        {
+            score++;
+        }
+        else if (nameEnemy.StartsWith("NormalEnemy"))
+        {
+            score += 2;
+        }
+        else if (nameEnemy.StartsWith("StrongEnemy"))
+        {
+            score += 3;
+        }
+        else if (nameEnemy.StartsWith("BossEnemy"))
+        {
+            score += 4;
+
+        }
+    }
 }
