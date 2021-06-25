@@ -14,6 +14,11 @@ public class MouseControl : GameManger
     private AudioSource mouseSound;
     [SerializeField]
     private AudioClip onPickUpMouse;
+
+    private void Awake()
+    {
+        Input.multiTouchEnabled = false;
+    }
     // Start is called before the first frame update
     void Start()
     {
