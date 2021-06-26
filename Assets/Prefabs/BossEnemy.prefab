@@ -141,7 +141,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4611955300526865565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77dc160605c11e54a94984061e6d65fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ad1c8af11affe545aa63f0e9055b1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rightSpawn: {fileID: 0}
@@ -150,11 +150,11 @@ MonoBehaviour:
   iConLucky: {fileID: 0}
   enemys: []
   items: []
-  musicBG: {fileID: 0}
+  musicBG: {fileID: 2137061004163784792, guid: ae20872715624714c97486f4d3cafeb4, type: 3}
   healthEnemy: 0
   speed: 0
   direction: {x: 0, y: 0, z: 0}
-  effect: {fileID: 3480714595221328828, guid: ae20872715624714c97486f4d3cafeb4, type: 3}
+  effect: {fileID: 0}
 --- !u!82 &-898939149873921439
 AudioSource:
   m_ObjectHideFlags: 0

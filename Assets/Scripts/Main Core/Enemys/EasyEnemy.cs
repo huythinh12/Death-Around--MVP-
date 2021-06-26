@@ -1,25 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : GameManger
+public class EasyEnemy : Enemy
 {
-    [HideInInspector]
-    public int healthEnemy;
-    [HideInInspector]
-    public float speed;
-    [HideInInspector]
-    public Vector3 direction;
     [SerializeField]
     private GameObject effect;
     private bool isRunning = false;
     private Rigidbody rb;
-    private string nameEnemy;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        nameEnemy = transform.name;
     }
     private void Update()
     {
@@ -45,7 +37,6 @@ public class Enemy : GameManger
             Destroy(gameObject);
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         //enemy collider with player
@@ -77,45 +68,16 @@ public class Enemy : GameManger
             }
         }
     }
-    private void GetDamgeWithTypeEnemy()
+
+    protected override void AddScoreWithTypeEnemy()
     {
-        if (nameEnemy.StartsWith("EasyEnemy"))
-        {
-            health--;
-        }
-        else if (nameEnemy.StartsWith("NormalEnemy"))
-        {
-            health-=2;
-
-        }
-        else if (nameEnemy.StartsWith("StrongEnemy"))
-        {
-            health-=3;
-
-        }
-        else if (nameEnemy.StartsWith("BossEnemy"))
-        {
-            health-=4;
-        }
+        score++;
     }
-    private void AddScoreWithTypeEnemy()
+
+    protected override void GetDamgeWithTypeEnemy()
     {
-        if (nameEnemy.StartsWith("EasyEnemy"))
-        {
-            score++;
-        }
-        else if (nameEnemy.StartsWith("NormalEnemy"))
-        {
-            score += 2;
-        }
-        else if (nameEnemy.StartsWith("StrongEnemy"))
-        {
-            score += 3;
-        }
-        else if (nameEnemy.StartsWith("BossEnemy"))
-        {
-            score += 4;
-
-        }
+        health--;
     }
+
+
 }
