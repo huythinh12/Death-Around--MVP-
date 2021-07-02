@@ -6,11 +6,11 @@ using TMPro;
 public class CanvasTimer : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text txtTime;
+    private TMP_Text _txtTime;
     [SerializeField]
-    private TMP_Text txtNotification;
+    private TMP_Text _txtNotification;
+    private int _waveCount = 1;
     public static event Action<bool> EventTimer;
-    private int waveCount = 1;
 
     private void OnEnable()
     {
@@ -19,7 +19,7 @@ public class CanvasTimer : MonoBehaviour
   
     private void HandleTimer(int time,bool isGameActive)
     {
-        txtTime.text = "Time: " + time;
+        _txtTime.text = "Time: " + time;
         //time out 
         if (time <= 0 && !isGameActive)
         {
@@ -28,18 +28,18 @@ public class CanvasTimer : MonoBehaviour
     }
     IEnumerator Notification()
     {
-        waveCount++;
+        _waveCount++;
       
         yield return new WaitForSeconds(0.5f);
-        txtNotification.text = "Success";
+        _txtNotification.text = "Success";
         yield return new WaitForSeconds(1f);
         //check wave to show notification text when wave boss appear
-        if (waveCount == 3 || waveCount == 6)
+        if (_waveCount == 3 || _waveCount == 6)
         {
-            txtNotification.text = "Boss Wave";
+            _txtNotification.text = "Boss Wave";
         }
         yield return new WaitForSeconds(1);
-        txtNotification.text = "";
+        _txtNotification.text = "";
     }
     private void OnDisable()
     {

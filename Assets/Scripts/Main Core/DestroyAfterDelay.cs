@@ -3,13 +3,13 @@
 public class DestroyAfterDelay : MonoBehaviour
 {
     [SerializeField]
-    AudioSource soundEffect;
+    AudioSource _soundEffect;
     [SerializeField]
-    AudioClip onPickUpSound;
+    AudioClip _onPickUpSound;
     // Start is called before the first frame update
     void Start()
     {
-        soundEffect.PlayOneShot(onPickUpSound, 1);
+        _soundEffect.PlayOneShot(_onPickUpSound, 1);
         Destroy(gameObject, 2);
     }
 

@@ -2,21 +2,22 @@ using UnityEngine;
 
 public class Items : GameManger
 {
-    private Rigidbody itemRb;
-    public int pointValue;
     [SerializeField]
-    private GameObject effectItemBlack, effectItemOrange, effectItemRed;
+    private GameObject _effectItemBlack, _effectItemOrange, _effectItemRed;
     [SerializeField]
-    private AudioSource soundItem;
+    private AudioSource _soundItem;
     [SerializeField]
-    private AudioClip onPickUpItem;
+    private AudioClip _onPickUpItem;
+    private Rigidbody _itemRb;
+    public int _pointValue;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (isGameActive)
+        if (_isGameActive)
         {
-            soundItem.PlayOneShot(onPickUpItem, 1);
-            itemRb = GetComponent<Rigidbody>();
+            _soundItem.PlayOneShot(_onPickUpItem, 1);
+            _itemRb = GetComponent<Rigidbody>();
             RandomTorque();
             RandomForce();
             Vector3 RandomPos = new Vector3(Random.Range(-11, 11), -8, -1f);
@@ -26,7 +27,7 @@ public class Items : GameManger
     private void Update()
     {
         //check condition for destroy item
-        if (!isGameActive || transform.position.y < -9)
+        if (!_isGameActive || transform.position.y < -9)
         {
             Destroy(gameObject);
         }
@@ -38,22 +39,22 @@ public class Items : GameManger
         {
             if (transform.name.StartsWith("Lucky"))
             {
-                Instantiate(effectItemOrange, transform.position, Quaternion.identity);
-                isInvisible = true;
+                Instantiate(_effectItemOrange, transform.position, Quaternion.identity);
+                _isInvisible = true;
             }
             else if (transform.name.StartsWith("Bad"))
             {
-                Instantiate(effectItemBlack, transform.position, Quaternion.identity);
-                if (score > 0)
+                Instantiate(_effectItemBlack, transform.position, Quaternion.identity);
+                if (_score > 0)
                 {
-                    score--;
-                    isChange = true;
+                    _score--;
+                    _isChange = true;
                 }
             }
             else if (transform.name.StartsWith("Explosion"))
             {
-                Instantiate(effectItemRed, transform.position, Quaternion.identity);
-                isExplosion = true;
+                Instantiate(_effectItemRed, transform.position, Quaternion.identity);
+                _isExplosion = true;
             }
             Destroy(gameObject);
         }
@@ -61,11 +62,11 @@ public class Items : GameManger
 
     private void RandomTorque()
     {
-        itemRb.AddTorque(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10), ForceMode.Impulse);
+        _itemRb.AddTorque(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10), ForceMode.Impulse);
     }
 
     private void RandomForce()
     {
-        itemRb.AddForce(Vector3.up * Random.Range(12, 16), ForceMode.Impulse);
+        _itemRb.AddForce(Vector3.up * Random.Range(12, 16), ForceMode.Impulse);
     }
 }

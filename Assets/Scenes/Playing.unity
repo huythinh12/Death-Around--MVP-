@@ -202,12 +202,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b465a1f4c4285b94a9aa86db54d6eafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGamOver: {fileID: 717990025}
-  canvasCompleted: {fileID: 1107665891}
-  penalMenu: {fileID: 171153516}
-  soundGameFinish: {fileID: 37188266}
-  onPickUpGameOver: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
-  onPickUpGameCompleted: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
+  _canvasGamOver: {fileID: 717990025}
+  _canvasCompleted: {fileID: 1107665891}
+  _penalMenu: {fileID: 171153516}
+  _soundGameFinish: {fileID: 37188266}
+  _onPickUpGameOver: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
+  _onPickUpGameCompleted: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
 --- !u!82 &37188266
 AudioSource:
   m_ObjectHideFlags: 0
@@ -482,20 +482,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbc3b31af43de847a88a69ffe52d229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightSpawn: {fileID: 1792520751}
-  leftSpawn: {fileID: 19687795}
-  player: {fileID: 704679949}
-  iConLucky: {fileID: 1840038328}
-  enemys:
+  _rightSpawn: {fileID: 1792520751}
+  _leftSpawn: {fileID: 19687795}
+  _player: {fileID: 704679949}
+  _iConLucky: {fileID: 1840038328}
+  _enemys:
   - {fileID: 1216334630, guid: ba8a010d5c02adc4ebc4018b5b13946d, type: 3}
   - {fileID: 4425564560239556904, guid: 1483e2a0445af4c43b8213bb521c3865, type: 3}
   - {fileID: 4242198046832008384, guid: ae65a372683463547a13176c60d551db, type: 3}
   - {fileID: 4611955300526730217, guid: b5ec55bdaadbf7d40aa7f6a4e53a4ca8, type: 3}
-  items:
-  - {fileID: 4671154147091129450, guid: 09b967c1d581df64eaa858399c397517, type: 3}
+  _items:
   - {fileID: 3617283033986398565, guid: 01210f9bf759097498057274fd851221, type: 3}
+  - {fileID: 4671154147091129450, guid: 09b967c1d581df64eaa858399c397517, type: 3}
   - {fileID: -2654035291799215786, guid: b763b24e9abd7ea40907149184cfad8d, type: 3}
-  musicBG: {fileID: 95136062}
+  _musicBG: {fileID: 95136062}
 --- !u!82 &95136062
 AudioSource:
   m_ObjectHideFlags: 0
@@ -704,15 +704,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e813bfc7159ae4284550c3aef62f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightSpawn: {fileID: 0}
-  leftSpawn: {fileID: 0}
-  player: {fileID: 0}
-  iConLucky: {fileID: 0}
-  enemys: []
-  items: []
-  musicBG: {fileID: 0}
-  mouseSound: {fileID: 154610764}
-  onPickUpMouse: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  _rightSpawn: {fileID: 0}
+  _leftSpawn: {fileID: 0}
+  _player: {fileID: 0}
+  _iConLucky: {fileID: 0}
+  _enemys: []
+  _items: []
+  _musicBG: {fileID: 0}
+  _mouseSound: {fileID: 154610764}
+  _onPickUpMouse: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
 --- !u!65 &154610762
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3088,8 +3088,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8337c2126cdd8849b5ac00bfbf59a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtTime: {fileID: 1186700190}
-  txtNotification: {fileID: 1513127361}
+  _txtTime: {fileID: 1186700190}
+  _txtNotification: {fileID: 1513127361}
 --- !u!1 &1037274987
 GameObject:
   m_ObjectHideFlags: 0
@@ -4624,10 +4624,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950cdcf27f9e23f4fa2738b809637215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txtPlayerName: {fileID: 1693581341}
-  txtScore: {fileID: 2096727441}
-  txtHealth: {fileID: 318668632}
-  txtLevel: {fileID: 92771448}
+  _txtPlayerName: {fileID: 1693581341}
+  _txtScore: {fileID: 2096727441}
+  _txtHealth: {fileID: 318668632}
+  _txtLevel: {fileID: 92771448}
 --- !u!1 &1670414296
 GameObject:
   m_ObjectHideFlags: 0
@@ -5282,6 +5282,67 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8392871795679903110, guid: 09b967c1d581df64eaa858399c397517, type: 3}
   m_PrefabInstance: {fileID: 1840038327}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1884009892
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1031.4786
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 716.8384
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -47.86483
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912960, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912967, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_Name
+      value: DataPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800494288766912967, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 717ad7807cb0ed240bd76f6a81293497, type: 3}
 --- !u!1 &1936423752
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,20 +4,20 @@ using TMPro;
 public class CanvasStatus : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text txtPlayerName;
+    private TMP_Text _txtPlayerName;
     [SerializeField]
-    private TMP_Text txtScore;
+    private TMP_Text _txtScore;
     [SerializeField]
-    private TMP_Text txtHealth;
+    private TMP_Text _txtHealth;
     [SerializeField]
-    private TMP_Text txtLevel;
+    private TMP_Text _txtLevel;
 
     private void Start()
     {
         if (DataPlayer.Instance)
         {
             //get name to show up on UI
-            txtPlayerName.text = DataPlayer.Instance.playerName;
+            _txtPlayerName.text = DataPlayer.Instance._playerName;
         }
     }
 
@@ -26,9 +26,9 @@ public class CanvasStatus : MonoBehaviour
     {
         if (health < 0)
             health = 0;
-        txtHealth.text = health.ToString();
-        txtScore.text = "Score: " + score.ToString();
-        txtLevel.text = "Level: " + level.ToString();
+        _txtHealth.text = health.ToString();
+        _txtScore.text = "Score: " + score.ToString();
+        _txtLevel.text = "Level: " + level.ToString();
     }
 
     private void OnEnable()

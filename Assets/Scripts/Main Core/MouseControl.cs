@@ -3,15 +3,16 @@
 [RequireComponent(typeof(TrailRenderer), typeof(BoxCollider))]
 public class MouseControl : GameManger
 {
-    private Vector3 mousePos;
-    private TrailRenderer trail;
-    private BoxCollider collider;
-    private bool swiping = false;
+    [SerializeField]
+    private AudioSource _mouseSound;
+    [SerializeField]
+    private AudioClip _onPickUpMouse;
+    private Vector3 _mousePos;
+    private TrailRenderer _trail;
+    private BoxCollider _collider;
     private RaycastHit hit;//test with raycast
-    [SerializeField]
-    private AudioSource mouseSound;
-    [SerializeField]
-    private AudioClip onPickUpMouse;
+    private bool _swiping = false;
+ 
 
     private void Awake()
     {
@@ -20,30 +21,30 @@ public class MouseControl : GameManger
     // Start is called before the first frame update
     void Start()
     {
-        trail = GetComponent<TrailRenderer>();
-        collider = GetComponent<BoxCollider>();
-        trail.enabled = false;
-        collider.enabled = false;
+        _trail = GetComponent<TrailRenderer>();
+        _collider = GetComponent<BoxCollider>();
+        _trail.enabled = false;
+        _collider.enabled = false;
     }
     private void UpdateMousePosition()
     {
         //convert mouse postition into world point 
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 9f));
+        _mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 9f));
         //z = 9 because camera has the z position of -10 and background positio = 0
-        transform.position = mousePos;
+        transform.position = _mousePos;
     }
 
     private void UpdateComponent()
     {
         //check if swipping trail and collider enable
-        trail.enabled = swiping;
-        collider.enabled = swiping;
+        _trail.enabled = _swiping;
+        _collider.enabled = _swiping;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (health <= 0)
+        if (_health <= 0)
         {
             return;
         }
@@ -63,14 +64,14 @@ public class MouseControl : GameManger
         if (Input.GetMouseButtonDown(0))
         {
             //when mouse down turn on trail and collider along with update mouse position
-            swiping = true;
+            _swiping = true;
             UpdateComponent();
-            mouseSound.PlayOneShot(onPickUpMouse, 1);
+            _mouseSound.PlayOneShot(_onPickUpMouse, 1);
         }
         else if (Input.GetMouseButtonUp(0))
         {
             //if mouse release turnof trail and collider and no update mouse position
-            swiping = false;
+            _swiping = false;
             UpdateComponent();
         }
     }
@@ -79,8 +80,8 @@ public class MouseControl : GameManger
     {
         if (other.CompareTag("Player"))
         {
-            isChange = true;
-            health = 0;
+            _isChange = true;
+            _health = 0;
             GameFinished();
         }
     }

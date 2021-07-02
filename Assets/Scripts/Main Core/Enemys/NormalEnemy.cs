@@ -5,15 +5,15 @@ public class NormalEnemy : Enemy
     [SerializeField]
     private GameObject effect;
     private bool isRunning = false;
-    private Rigidbody rb;
+    private Rigidbody rigidbodyNormalEnemy;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rigidbodyNormalEnemy = GetComponent<Rigidbody>();
     }
     private void Update()
     {
-        if (!isGameActive && !isRunning)
+        if (!_isGameActive && !isRunning)
         {
             Instantiate(effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
@@ -22,14 +22,14 @@ public class NormalEnemy : Enemy
         else
         {
             if (Time.timeScale != 0)
-                rb.AddForce(direction.normalized * speed);
+                rigidbodyNormalEnemy.AddForce(_direction.normalized * _speed);
         }
 
         //check if item Explosion active then get effect
-        if (isExplosion && !isRunning)
+        if (_isExplosion && !isRunning)
         {
-            score++;
-            isChange = true;
+            _score++;
+            _isChange = true;
             isRunning = true;
             Instantiate(effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
@@ -40,12 +40,12 @@ public class NormalEnemy : Enemy
         //enemy collider with player
         if (other.CompareTag("Player"))
         {
-            if (!isInvisible)
+            if (!_isInvisible)
             {
                 GetDamgeWithTypeEnemy();
             }
-            isChange = true;
-            if (health <= 0)
+            _isChange = true;
+            if (_health <= 0)
             {
                 GameFinished();
             }
@@ -55,12 +55,12 @@ public class NormalEnemy : Enemy
         //enemy collider with mouse
         else if (other.CompareTag("Mouse"))
         {
-            healthEnemy--;
-            if (healthEnemy <= 0)
+            _healthEnemy--;
+            if (_healthEnemy <= 0)
             {
                 AddScoreWithTypeEnemy();
 
-                isChange = true;
+                _isChange = true;
                 Instantiate(effect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
@@ -69,12 +69,12 @@ public class NormalEnemy : Enemy
 
     protected override void AddScoreWithTypeEnemy()
     {
-        score+=2;
+        _score+=2;
     }
 
     protected override void GetDamgeWithTypeEnemy()
     {
-        health-=2;
+        _health-=2;
     }
 
 }

@@ -8,35 +8,35 @@ using TMPro;
 public class CanvasManager : MonoBehaviour
 {
     [SerializeField]
-    private TMP_InputField playerName;
+    private TMP_InputField _playerName;
     [SerializeField]
-    private TMP_Text txtHightScore;
+    private TMP_Text _txtHightScore;
     [SerializeField]
-    private GameObject canvasMainStart;
+    private GameObject _canvasMainStart;
     [SerializeField]
-    private GameObject canvasOption;
+    private GameObject _canvasOption;
     [SerializeField]
-    private GameObject canvasTutorial;
+    private GameObject _canvasTutorial;
     [SerializeField]
-    private AudioSource musicBG;
-    private DataPlayer dataPlayer;
+    private AudioSource _musicBG;
     [SerializeField]
-    private Slider sliderVolume;
-    private int difficultySelect = 1;
-    private float volume;
+    private Slider _sliderVolume;
+    private DataPlayer _dataPlayer;
+    private int _difficultySelect = 1;
+    private float _volume;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerName.text = DataPlayer.Instance.playerName;
-        txtHightScore.text = DataPlayer.Instance.score.ToString();
-        dataPlayer = FindObjectOfType<DataPlayer>();
+        _playerName.text = DataPlayer.Instance._playerName;
+        _txtHightScore.text = DataPlayer.Instance._score.ToString();
+        _dataPlayer = FindObjectOfType<DataPlayer>();
 
         //set value volume default
-        if(dataPlayer.volume > 0)
+        if(_dataPlayer._volume > 0)
         {
-            musicBG.volume = dataPlayer.volume;
-            sliderVolume.value = dataPlayer.volume;
+            _musicBG.volume = _dataPlayer._volume;
+            _sliderVolume.value = _dataPlayer._volume;
         }
     }
 
@@ -48,39 +48,39 @@ public class CanvasManager : MonoBehaviour
 
     public void OnClickOption()
     {
-        canvasMainStart.SetActive(false);
-        canvasOption.SetActive(true);
+        _canvasMainStart.SetActive(false);
+        _canvasOption.SetActive(true);
     }
     public void OnclickTutorial()
     {
-        canvasMainStart.SetActive(false);
-        canvasTutorial.SetActive(true);
+        _canvasMainStart.SetActive(false);
+        _canvasTutorial.SetActive(true);
     }
     public void SaveAndExit()
     {
-        canvasOption.SetActive(false);
-        canvasTutorial.SetActive(false);
-        canvasMainStart.SetActive(true);
-        dataPlayer.difficulty = difficultySelect;
+        _canvasOption.SetActive(false);
+        _canvasTutorial.SetActive(false);
+        _canvasMainStart.SetActive(true);
+        _dataPlayer._difficulty = _difficultySelect;
     }
     public void Easy()
     {
-        difficultySelect = 1;
+        _difficultySelect = 1;
     }
     public void Normal()
     {
-        difficultySelect = 2;
+        _difficultySelect = 2;
 
     }
     public void Hard()
     {
-        difficultySelect = 3;
+        _difficultySelect = 3;
 
     }
     public void ChangeVolume(float volume)
     {
-        musicBG.volume = volume;
-        dataPlayer.volume = volume;
+        _musicBG.volume = volume;
+        _dataPlayer._volume = volume;
     }
 
     public void ExitGame()

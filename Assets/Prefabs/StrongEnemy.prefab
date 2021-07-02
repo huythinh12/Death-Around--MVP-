@@ -108,17 +108,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f1ffbaf6ef0d34f9d003f8321c7766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightSpawn: {fileID: 0}
-  leftSpawn: {fileID: 0}
-  player: {fileID: 0}
-  iConLucky: {fileID: 0}
-  enemys: []
-  items: []
-  musicBG: {fileID: 0}
-  healthEnemy: 0
-  speed: 0
-  direction: {x: 0, y: 0, z: 0}
-  effect: {fileID: 3480714595221328828, guid: ae20872715624714c97486f4d3cafeb4, type: 3}
+  _rightSpawn: {fileID: 0}
+  _leftSpawn: {fileID: 0}
+  _player: {fileID: 0}
+  _iConLucky: {fileID: 0}
+  _enemys: []
+  _items: []
+  _musicBG: {fileID: 0}
+  _healthEnemy: 0
+  _speed: 0
+  _direction: {x: 0, y: 0, z: 0}
+  _effect: {fileID: 3480714595221328828, guid: ae20872715624714c97486f4d3cafeb4, type: 3}
 --- !u!82 &-982048639755052767
 AudioSource:
   m_ObjectHideFlags: 0

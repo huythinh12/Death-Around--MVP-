@@ -6,15 +6,16 @@ using UnityEngine;
 public class DataPlayer : MonoBehaviour
 {
     public static DataPlayer Instance;
-    public string playerName;
+    public string _playerName;
     [HideInInspector]
-    public int score;
-    public int difficulty;
-    public float volume;
+    public int _score;
+    public int _difficulty;
+    public float _volume;
 
     private void Awake()
     {
-        difficulty = 1;
+        _difficulty = 1;
+        _volume = 1;
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -28,7 +29,7 @@ public class DataPlayer : MonoBehaviour
     //this is call from inputfield
     public void EnterPlayerName(string name)
     {
-        playerName = name;
+        _playerName = name;
     }
 
     public void SavePlayerData()
@@ -37,8 +38,8 @@ public class DataPlayer : MonoBehaviour
         try
         {
             Player data = new Player();
-            data.playerName = playerName;
-            data.score = score;
+            data.playerName = _playerName;
+            data.score = _score;
             string json = JsonUtility.ToJson(data);
             File.WriteAllText(Application.persistentDataPath + "/savedataplayer-da.json", json);
         }
@@ -59,8 +60,8 @@ public class DataPlayer : MonoBehaviour
             {
                 string json = File.ReadAllText(path);
                 Player data = JsonUtility.FromJson<Player>(json);
-                playerName = data.playerName;
-                score = data.score;
+                _playerName = data.playerName;
+                _score = data.score;
             }
         }
         catch (Exception)

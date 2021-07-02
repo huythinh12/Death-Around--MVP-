@@ -3,11 +3,11 @@ using UnityEngine;
 public abstract class Enemy : GameManger
 {
     [HideInInspector]
-    public int healthEnemy;
+    public int _healthEnemy;
     [HideInInspector]
-    public float speed;
+    public float _speed;
     [HideInInspector]
-    public Vector3 direction;
+    public Vector3 _direction;
     
     protected abstract void GetDamgeWithTypeEnemy();
     

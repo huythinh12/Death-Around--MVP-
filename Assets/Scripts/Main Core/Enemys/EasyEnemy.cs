@@ -3,35 +3,35 @@ using UnityEngine;
 public class EasyEnemy : Enemy
 {
     [SerializeField]
-    private GameObject effect;
-    private bool isRunning = false;
-    private Rigidbody rb;
+    private GameObject _effect;
+    private bool _isRunning = false;
+    private Rigidbody _rigidbodyEasyEnemy;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        _rigidbodyEasyEnemy = GetComponent<Rigidbody>();
     }
     private void Update()
     {
-        if (!isGameActive && !isRunning)
+        if (!_isGameActive && !_isRunning)
         {
-            Instantiate(effect, transform.position, Quaternion.identity);
+            Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            isRunning = true;
+            _isRunning = true;
         }
         else
         {
             if (Time.timeScale != 0)
-                rb.AddForce(direction.normalized * speed);
+                _rigidbodyEasyEnemy.AddForce(_direction.normalized * _speed);
         }
 
         //check if item Explosion active then get effect
-        if (isExplosion && !isRunning)
+        if (_isExplosion && !_isRunning)
         {
-            score++;
-            isChange = true;
-            isRunning = true;
-            Instantiate(effect, transform.position, Quaternion.identity);
+            _score++;
+            _isChange = true;
+            _isRunning = true;
+            Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -40,28 +40,28 @@ public class EasyEnemy : Enemy
         //enemy collider with player
         if (other.CompareTag("Player"))
         {
-            if (!isInvisible)
+            if (!_isInvisible)
             {
                 GetDamgeWithTypeEnemy();
             }
-            isChange = true;
-            if (health <= 0)
+            _isChange = true;
+            if (_health <= 0)
             {
                 GameFinished();
             }
-            Instantiate(effect, transform.position, Quaternion.identity);
+            Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
         //enemy collider with mouse
         else if (other.CompareTag("Mouse"))
         {
-            healthEnemy--;
-            if (healthEnemy <= 0)
+            _healthEnemy--;
+            if (_healthEnemy <= 0)
             {
                 AddScoreWithTypeEnemy();
 
-                isChange = true;
-                Instantiate(effect, transform.position, Quaternion.identity);
+                _isChange = true;
+                Instantiate(_effect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
         }
@@ -69,12 +69,12 @@ public class EasyEnemy : Enemy
 
     protected override void AddScoreWithTypeEnemy()
     {
-        score++;
+        _score++;
     }
 
     protected override void GetDamgeWithTypeEnemy()
     {
-        health--;
+        _health--;
     }
 
 

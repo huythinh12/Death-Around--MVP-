@@ -4825,8 +4825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c566ed3c8d62cba43b86d9655ea6c903, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundEffect: {fileID: -39128301306124034}
-  onPickUpSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+  _soundEffect: {fileID: -39128301306124034}
+  _onPickUpSound: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
 --- !u!82 &-39128301306124034
 AudioSource:
   m_ObjectHideFlags: 0

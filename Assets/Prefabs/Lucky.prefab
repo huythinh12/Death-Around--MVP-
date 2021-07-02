@@ -110,19 +110,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea942642f67b684dae3772f64dc60bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightSpawn: {fileID: 0}
-  leftSpawn: {fileID: 0}
-  player: {fileID: 0}
-  iConLucky: {fileID: 0}
-  enemys: []
-  items: []
-  musicBG: {fileID: 0}
-  pointValue: 0
-  effectItemBlack: {fileID: 7328047381363544855, guid: 9ca5d1583ebc3c040afeb5f2947d8f1f, type: 3}
-  effectItemOrange: {fileID: 164324583791115169, guid: 0ac8af7f5a0d6f447a96a0ef15e4d68d, type: 3}
-  effectItemRed: {fileID: 5522600571088126331, guid: cbf506308da00a94e89dd8e9bc7c54b1, type: 3}
-  soundItem: {fileID: -3940608597188813032}
-  onPickUpItem: {fileID: 8300000, guid: 8a23239be9de14838884a763327af51e, type: 3}
+  _rightSpawn: {fileID: 0}
+  _leftSpawn: {fileID: 0}
+  _player: {fileID: 0}
+  _iConLucky: {fileID: 0}
+  _enemys: []
+  _items: []
+  _musicBG: {fileID: 0}
+  _effectItemBlack: {fileID: 7328047381363544855, guid: 9ca5d1583ebc3c040afeb5f2947d8f1f, type: 3}
+  _effectItemOrange: {fileID: 164324583791115169, guid: 0ac8af7f5a0d6f447a96a0ef15e4d68d, type: 3}
+  _effectItemRed: {fileID: 5522600571088126331, guid: cbf506308da00a94e89dd8e9bc7c54b1, type: 3}
+  _soundItem: {fileID: -3940608597188813032}
+  _onPickUpItem: {fileID: 8300000, guid: 8a23239be9de14838884a763327af51e, type: 3}
+  _pointValue: 0
 --- !u!54 &-4569487384996004673
 Rigidbody:
   m_ObjectHideFlags: 0

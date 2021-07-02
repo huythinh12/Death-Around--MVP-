@@ -4,15 +4,15 @@ using UnityEngine.SceneManagement;
 public class CanvasController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject canvasGamOver;
+    private GameObject _canvasGamOver;
     [SerializeField]
-    private GameObject canvasCompleted;
+    private GameObject _canvasCompleted;
     [SerializeField]
-    private GameObject penalMenu;
+    private GameObject _penalMenu;
     [SerializeField]
-    private AudioSource soundGameFinish;
+    private AudioSource _soundGameFinish;
     [SerializeField]
-    private AudioClip onPickUpGameOver , onPickUpGameCompleted;
+    private AudioClip _onPickUpGameOver , _onPickUpGameCompleted;
     private void OnEnable()
     {
         GameManger.EventOnCanvasController += HandleCanvas;
@@ -25,24 +25,24 @@ public class CanvasController : MonoBehaviour
     {
         if (health <= 0)
         {
-            soundGameFinish.PlayOneShot(onPickUpGameOver, 1);
-            canvasGamOver.SetActive(true);
+            _soundGameFinish.PlayOneShot(_onPickUpGameOver, 1);
+            _canvasGamOver.SetActive(true);
         }
         else if (isGameComplete)
         {
-            soundGameFinish.PlayOneShot(onPickUpGameCompleted, 1);
-            canvasCompleted.SetActive(true);
+            _soundGameFinish.PlayOneShot(_onPickUpGameCompleted, 1);
+            _canvasCompleted.SetActive(true);
         }
     }
 
     public void OnClickMenu()
     {
-        penalMenu.SetActive(true);
+        _penalMenu.SetActive(true);
         Time.timeScale = 0;
     }
     public void Resume()
     {
-        penalMenu.SetActive(false);
+        _penalMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
