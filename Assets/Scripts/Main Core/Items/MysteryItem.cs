@@ -66,7 +66,7 @@ public class MysteryItem : Items
     private int RandomScore()
     {
         int scoreRandom;
-        if (Random.Range(0, 3) == 1)
+        if (Random.Range(0, 5) == 1)
         {
             scoreRandom = 10;
             _score += scoreRandom;
@@ -74,7 +74,8 @@ public class MysteryItem : Items
         else
         {
             scoreRandom = 5;
-          _score-=scoreRandom;
+            if (_score - scoreRandom > 0)
+                _score -= scoreRandom;
         }
         return scoreRandom;
     }
