@@ -13,6 +13,8 @@ public class CanvasController : MonoBehaviour
     private AudioSource _soundGameFinish;
     [SerializeField]
     private AudioClip _onPickUpGameOver , _onPickUpGameCompleted;
+    [SerializeField]
+    private ParticleSystem _particleCompleted;
     private void OnEnable()
     {
         GameManger.EventOnCanvasController += HandleCanvas;
@@ -30,6 +32,8 @@ public class CanvasController : MonoBehaviour
         }
         else if (isGameComplete)
         {
+            GameObject.Find("MouseControl").SetActive(false);
+            _particleCompleted.Play();
             _soundGameFinish.PlayOneShot(_onPickUpGameCompleted, 1);
             _canvasCompleted.SetActive(true);
         }

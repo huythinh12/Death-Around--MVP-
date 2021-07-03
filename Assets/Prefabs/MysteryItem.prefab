@@ -139,6 +139,7 @@ MonoBehaviour:
   _effectItemRed: {fileID: 0}
   _soundItem: {fileID: 3676971488846093365}
   _onPickUpItem: {fileID: 8300000, guid: 8a23239be9de14838884a763327af51e, type: 3}
+  _showUP: {fileID: 2032955916, guid: 22b064a0ce28caf419f97bbfdc9e02ac, type: 3}
 --- !u!82 &3676971488846093365
 AudioSource:
   m_ObjectHideFlags: 0

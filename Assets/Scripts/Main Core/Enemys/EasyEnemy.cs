@@ -66,12 +66,17 @@ public class EasyEnemy : Enemy
 
                 _isChange = true;
                 Instantiate(_effect, transform.position, Quaternion.identity);
-                showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
-                var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
-                showUp.showUpScore = _enemyScore.ToString();
-                    Destroy(gameObject);
+                ShowUpEffective();
+                Destroy(gameObject);
             }
         }
+    }
+
+    private void ShowUpEffective()
+    {
+        showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
+        var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
+        showUp.showUpScore = "+" + _enemyScore.ToString();
     }
 
     protected override void AddScoreWithTypeEnemy()

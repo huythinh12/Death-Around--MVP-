@@ -6,6 +6,8 @@ public class BonusHeartItem : Items
     private AudioSource _soundItem;
     [SerializeField]
     private AudioClip _onPickUpItem;
+    [SerializeField]
+    private ShowUp _showUP;
     private Rigidbody _rigidbodyBonusHeartItem;
 
     void Start()
@@ -50,10 +52,17 @@ public class BonusHeartItem : Items
         if (other.CompareTag("Mouse"))
         {
             Instantiate(_effectItemRed, transform.position, Quaternion.identity);
+            ShowUpEffective();
             _health++;
             _isChange = true;
             Destroy(gameObject);
         }
     }
 
+    private void ShowUpEffective()
+    {
+        var showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
+        var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
+        showUp.showUpScore = "+ 1-life";
+    }
 }

@@ -10,7 +10,7 @@ public class ShowUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        txtShowUPScore.text = "+" + showUpScore;
+        txtShowUPScore.text = showUpScore;
         Destroy(gameObject, 1f);
     }
 }

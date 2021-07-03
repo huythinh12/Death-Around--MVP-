@@ -6,6 +6,8 @@ public class MysteryItem : Items
     private AudioSource _soundItem;
     [SerializeField]
     private AudioClip _onPickUpItem;
+    [SerializeField]
+    private ShowUp _showUP;
     private Rigidbody _rigidbodyMysteryItem;
 
     void Start()
@@ -47,18 +49,34 @@ public class MysteryItem : Items
         if (other.CompareTag("Mouse"))
         {
             Instantiate(_effectItemBlack, transform.position, Quaternion.identity);
-            RandomScore();
+
+            ShowUpEffective();
             _isChange = true;
             Destroy(gameObject);
         }
     }
 
-    private void RandomScore()
+    private void ShowUpEffective()
     {
+        var showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
+        var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
+        showUp.showUpScore = "+" + RandomScore().ToString();
+    }
+
+    private int RandomScore()
+    {
+        int scoreRandom;
         if (Random.Range(0, 3) == 1)
-            _score += 5;
+        {
+            scoreRandom = 10;
+            _score += scoreRandom;
+        }
         else
-            _score--;
+        {
+            scoreRandom = 5;
+          _score-=scoreRandom;
+        }
+        return scoreRandom;
     }
 
     // Start is called before the first frame update

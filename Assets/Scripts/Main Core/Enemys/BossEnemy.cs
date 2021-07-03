@@ -39,7 +39,7 @@ public class BossEnemy : Enemy
     }
     private void OnTriggerEnter(Collider other)
     {
-        //enemy collider with player
+        //enemy collide with player
         if (other.CompareTag("Player"))
         {
             if (!_isInvisible)
@@ -64,12 +64,17 @@ public class BossEnemy : Enemy
 
                 _isChange = true;
                 Instantiate(_effect, transform.position, Quaternion.identity);
-                showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
-                var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
-                showUp.showUpScore = _enemyScore.ToString();
+                ShowUpEffective();
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void ShowUpEffective()
+    {
+        showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
+        var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
+        showUp.showUpScore = "+" + _enemyScore.ToString();
     }
 
     protected override void AddScoreWithTypeEnemy()

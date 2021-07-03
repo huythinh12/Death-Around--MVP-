@@ -36,7 +36,7 @@ public class GameManger : MonoBehaviour
     private List<Items> _items = new List<Items>();
     [SerializeField]
     private AudioSource _musicBG;
-  
+ 
     //field inside class
     private DataPlayer _dataPlayer;
     private int _secondCountdown;
