@@ -268,18 +268,21 @@ public class GameManger : MonoBehaviour
         if (_isInvisible && _isActiveItem == false)
         {
             _isActiveItem = true;
-            StartCoroutine(InvisibleTime());
+           StartCoroutine(InvisibleTime());
         }
 
     }
 
     IEnumerator InvisibleTime()
     {
-        _iConSteelItem.SetActive(true);
-        yield return new WaitForSeconds(4);
-        _iConSteelItem.SetActive(false);
-        _isInvisible = false;
-        _isActiveItem = false;
+        if(_iConSteelItem!= null)
+        {
+            _iConSteelItem.SetActive(true);
+            yield return new WaitForSeconds(4);
+            _iConSteelItem.SetActive(false);
+            _isInvisible = false;
+            _isActiveItem = false;
+        }
 
     }
 

@@ -129,16 +129,15 @@ MonoBehaviour:
   _rightSpawn: {fileID: 0}
   _leftSpawn: {fileID: 0}
   _player: {fileID: 0}
-  _iConLucky: {fileID: 0}
+  _iConSteelItem: {fileID: 0}
   _enemys: []
   _items: []
   _musicBG: {fileID: 0}
   _effectItemBlack: {fileID: 0}
   _effectItemOrange: {fileID: 0}
   _effectItemRed: {fileID: 5522600571088126331, guid: cbf506308da00a94e89dd8e9bc7c54b1, type: 3}
-  _pointValue: 0
-  _soundItem: {fileID: 0}
-  _onPickUpItem: {fileID: 0}
+  _soundItem: {fileID: 4611147641250168221}
+  _onPickUpItem: {fileID: 8300000, guid: 8a23239be9de14838884a763327af51e, type: 3}
 --- !u!82 &4611147641250168221
 AudioSource:
   m_ObjectHideFlags: 0

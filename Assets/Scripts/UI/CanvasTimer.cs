@@ -11,7 +11,6 @@ public class CanvasTimer : MonoBehaviour
     [SerializeField]
     private TMP_Text _txtNotification;
     private int _waveCount = 1;
-    public static event Action<bool> EventTimer;
     private StringBuilder sbTime = new StringBuilder("Time: x");
 
     private void OnEnable()

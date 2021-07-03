@@ -21,6 +21,7 @@ public class CanvasManager : MonoBehaviour
     private AudioSource _musicBG;
     [SerializeField]
     private Slider _sliderVolume;
+    [SerializeField]
     private DataPlayer _dataPlayer;
     private int _difficultySelect = 1;
 
@@ -38,7 +39,12 @@ public class CanvasManager : MonoBehaviour
             _sliderVolume.value = _dataPlayer._volume;
         }
     }
+    //this is call from input field
+    public void EnterPlayerName(string name)
+    {
+        DataPlayer.Instance._playerName = name;
 
+    }
     //will call when click Start button
     public void StartGame()
     {

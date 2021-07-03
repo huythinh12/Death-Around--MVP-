@@ -26,11 +26,7 @@ public class DataPlayer : MonoBehaviour
         //load data when awake
         LoadPlayerData();
     }
-    //this is call from input field
-    public void EnterPlayerName(string name)
-    {
-        _playerName = name;
-    }
+
 
     public void SavePlayerData()
     {

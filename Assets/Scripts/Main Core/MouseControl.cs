@@ -10,7 +10,7 @@ public class MouseControl : GameManger
     private Vector3 _mousePos;
     private TrailRenderer _trail;
     private BoxCollider _collider;
-    private Touch _touch;
+    //private Touch _touch;
     private bool _swiping = false;
 
 
@@ -57,17 +57,23 @@ public class MouseControl : GameManger
     private void UpdateTouchSwipe()
     {
 
-        if (HasTouchInput())
-        {
-            if (_touch.phase == TouchPhase.Moved)
-            {
-                _swiping = true;
-                UpdateComponent();
-                _mouseSound.PlayOneShot(_onPickUpMouse, 1);
+        //if (HasTouchInput())
+        //{
+        //    if (_touch.phase == TouchPhase.Began)
+        //        _mouseSound.PlayOneShot(_onPickUpMouse, 1);
+        //    if (_touch.phase == TouchPhase.Moved)
+        //    {
+        //        _swiping = true;
+        //        UpdateComponent();
 
-            }
-        }
-        else if (Input.GetMouseButtonDown(0))
+        //    }
+        //    else if (_touch.phase == TouchPhase.Ended)
+        //    {
+        //        _swiping = false;
+        //        UpdateComponent();
+        //    }
+        //}
+         if (Input.GetMouseButtonDown(0))
         {
 
             //_touch.phase == TouchPhase.Moved
@@ -84,15 +90,15 @@ public class MouseControl : GameManger
         }
 
     }
-    private bool HasTouchInput()
-    {
-        if (Input.touchCount > 0)
-        {
-            _touch = Input.GetTouch(0);
-            return true;
-        }
-        return false;
-    }
+    //private bool HasTouchInput()
+    //{
+    //    if (Input.touchCount > 0)
+    //    {
+    //        _touch = Input.GetTouch(0);
+    //        return true;
+    //    }
+    //    return false;
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

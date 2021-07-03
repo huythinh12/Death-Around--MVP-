@@ -137,8 +137,8 @@ MonoBehaviour:
   _effectItemBlack: {fileID: 7328047381363544855, guid: 9ca5d1583ebc3c040afeb5f2947d8f1f, type: 3}
   _effectItemOrange: {fileID: 0}
   _effectItemRed: {fileID: 0}
-  _soundItem: {fileID: 0}
-  _onPickUpItem: {fileID: 0}
+  _soundItem: {fileID: 3676971488846093365}
+  _onPickUpItem: {fileID: 8300000, guid: 8a23239be9de14838884a763327af51e, type: 3}
 --- !u!82 &3676971488846093365
 AudioSource:
   m_ObjectHideFlags: 0
