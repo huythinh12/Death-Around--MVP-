@@ -72,7 +72,7 @@ public class GameManger : MonoBehaviour
         if (_dataPlayer._difficulty == 1)
         {
             _health = 10;
-            _rateSpawn = 1.8f;
+            _rateSpawn = 1.5f;
             _minRate = 3;
             _maxRate = 7;
         }
@@ -86,7 +86,7 @@ public class GameManger : MonoBehaviour
         else if (_dataPlayer._difficulty == 3)
         {
             _health = 5;
-            _rateSpawn = 0.8f;
+            _rateSpawn = 0.5f;
             _minRate = 8;
             _maxRate = 17;
         }

@@ -1465,6 +1465,7 @@ MonoBehaviour:
   _canvasTutorial: {fileID: 623488149}
   _musicBG: {fileID: 491109259}
   _sliderVolume: {fileID: 396516724}
+  _dataPlayer: {fileID: 0}
 --- !u!82 &491109259
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3902,8 +3903,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2071889493}
-        m_TargetAssemblyTypeName: DataPlayer, Assembly-CSharp
+      - m_Target: {fileID: 491109258}
+        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
         m_MethodName: EnterPlayerName
         m_Mode: 0
         m_Arguments:
