@@ -29,19 +29,17 @@ public class GameManger : MonoBehaviour
     [SerializeField]
     private GameObject _player;
     [SerializeField]
-    private GameObject _iConLucky;
+    private GameObject _iConSteelItem;
     [SerializeField]
-    private List<Enemy> _enemys = new List<Enemy>();
+    private List<EnemyData> _enemys = new List<EnemyData>();
     [SerializeField]
     private List<Items> _items = new List<Items>();
     [SerializeField]
     private AudioSource _musicBG;
+  
     //field inside class
     private DataPlayer _dataPlayer;
-    private Coroutine _invisibleCoroutine;
     private int _secondCountdown;
-    private float _enemySpeed;
-    private int _enemyHealth;
     private int _enemyIndex;
     private float _rateSpawn;
     private int _minRate;
@@ -60,6 +58,7 @@ public class GameManger : MonoBehaviour
     private void Start()
     {
         _dataPlayer = FindObjectOfType<DataPlayer>();
+        SetDefaultValue();
         SetDifficulty();
 
         //Set value to UI when it begin  
@@ -70,43 +69,41 @@ public class GameManger : MonoBehaviour
     }
     private void SetDifficulty()
     {
-        int healthDifficulty;
         if (_dataPlayer._difficulty == 1)
         {
-            healthDifficulty = 10;
-            SetDefaultValue(healthDifficulty);
+            _health = 10;
+            _rateSpawn = 1.8f;
+            _minRate = 3;
+            _maxRate = 7;
         }
         else if (_dataPlayer._difficulty == 2)
         {
-            healthDifficulty = 7;
-            SetDefaultValue(healthDifficulty);
+            _health = 7;
+            _rateSpawn = 1f;
+            _minRate = 5;
+            _maxRate = 11;
         }
         else if (_dataPlayer._difficulty == 3)
         {
-            healthDifficulty = 5;
-            SetDefaultValue(healthDifficulty);
-
+            _health = 5;
+            _rateSpawn = 0.8f;
+            _minRate = 8;
+            _maxRate = 17;
         }
+
+
     }
-    private void SetDefaultValue(int healthDifficulty)
+    private void SetDefaultValue()
     {
         //All set default hear
         //music background
-        //soundPlaying.volume = DataPlayer.Instance.volume;
         _musicBG.volume = _dataPlayer._volume;
 
         _secondCountdown = 31;
-        //for state ui
+        //for state UI
         Level = 1;
-        _health = healthDifficulty;
         _score = 0;
-        //for enemy value
-        _enemySpeed = 2;
-        _enemyHealth = 1;
-        _rateSpawn = 2f;
-        //for random range
-        _minRate = 5;
-        _maxRate = 10;
+    
         //other 
         _waitToStart = 1;
         _isGameActive = false;
@@ -161,10 +158,10 @@ public class GameManger : MonoBehaviour
         while (_isGameActive && _health > 0)
         {
             yield return new WaitForSeconds(UnityEngine.Random.Range(_minRate, _maxRate));
-            //check delay update to prevent timeout asynchronus
+            //check delay update to prevent timeout asynchronous
             yield return null;
             if (!_isGameActive) break;
-            var randomItemState = UnityEngine.Random.Range(0, 3);
+            var randomItemState = UnityEngine.Random.Range(0, 4);
             Instantiate(_items[randomItemState], transform.position, Quaternion.identity);
         }
     }
@@ -179,29 +176,44 @@ public class GameManger : MonoBehaviour
         while (_isGameActive && _health > 0)
         {
             //random spawn left or right
-            if (UnityEngine.Random.Range(0, 2) == 1)
-            {
-                sideSpawn = new Vector3(_rightSpawn.transform.position.x, UnityEngine.Random.Range(-4.5f, 5.4f), -0.5f);
-                rotate.eulerAngles = new Vector3(0, -90, 0);
-            }
-            else
-            {
-                sideSpawn = new Vector3(_leftSpawn.transform.position.x, UnityEngine.Random.Range(-4.5f, 5.4f), -0.5f);
-                rotate.eulerAngles = new Vector3(0, 90, 0);
-            }
+            sideSpawn = RandomSide(ref rotate);
 
             //spawn enemy
-            var enemy = Instantiate(_enemys[_enemyIndex], sideSpawn, rotate);
-            //set value to enemy
-            enemy._direction = _player.transform.position - enemy.transform.position;
-            enemy._healthEnemy = _enemyHealth;
-            enemy._speed = _enemySpeed;
-
+            var enemy = Instantiate(_enemys[_enemyIndex].enemyPrefab, sideSpawn, rotate);
+            SetValueToEnemy(enemy);
             yield return waitTime;
         }
     }
+
+    private void SetValueToEnemy(Enemy enemy)
+    {
+        enemy._direction = _player.transform.position - enemy.transform.position;
+        enemy._healthEnemy = _enemys[_enemyIndex]._health;
+        enemy._speed = _enemys[_enemyIndex]._speed;
+        enemy._damge = _enemys[_enemyIndex]._damge;
+        enemy._enemyScore = _enemys[_enemyIndex]._scrore;
+    }
+
+    private Vector3 RandomSide(ref Quaternion rotate)
+    {
+        Vector3 sideSpawn;
+        if (UnityEngine.Random.Range(0, 2) == 1)
+        {
+            sideSpawn = new Vector3(_rightSpawn.transform.position.x, UnityEngine.Random.Range(-4.5f, 5.4f), -0.5f);
+            rotate.eulerAngles = new Vector3(0, -90, 0);
+        }
+        else
+        {
+            sideSpawn = new Vector3(_leftSpawn.transform.position.x, UnityEngine.Random.Range(-4.5f, 5.4f), -0.5f);
+            rotate.eulerAngles = new Vector3(0, 90, 0);
+        }
+
+        return sideSpawn;
+    }
+
     private void WaveLevel()
     {
+        
         //set up for each wave 
         switch (Level)
         {
@@ -210,23 +222,17 @@ public class GameManger : MonoBehaviour
                 break;
             case 2:
                 _enemyIndex = (int)EnemyState.Easy;
-                _rateSpawn = 1.5f;
                 break;
             case 3://this is boss
                 _enemyIndex = (int)EnemyState.Strong;
-                _rateSpawn = 1;
-                _enemySpeed = 2.5f;
                 break;
             case 4:
                 RandomTypeEnemy((int)EnemyState.Easy, (int)EnemyState.Normal);
-                _enemySpeed = 2.8f;
                 break;
             case 5:
                 RandomTypeEnemy((int)EnemyState.Strong, (int)EnemyState.Normal);
                 break;
             default://this is boss
-                _rateSpawn = 0.8f;
-                _enemySpeed = 3;
                 _enemyIndex = (int)EnemyState.Boss;
                 break;
         }
@@ -246,9 +252,9 @@ public class GameManger : MonoBehaviour
 
     private void Update()
     {
-        if (_isGameActive == false && _iConLucky)
+        if (_isGameActive == false && _iConSteelItem)
         {
-            _iConLucky.SetActive(false);
+            _iConSteelItem.SetActive(false);
         }
         //if what happening change this will update
         if (_isChange)
@@ -262,16 +268,16 @@ public class GameManger : MonoBehaviour
         if (_isInvisible && _isActiveItem == false)
         {
             _isActiveItem = true;
-            _invisibleCoroutine = StartCoroutine(InvisibleTime());
+            StartCoroutine(InvisibleTime());
         }
 
     }
 
     IEnumerator InvisibleTime()
     {
-        _iConLucky.SetActive(true);
+        _iConSteelItem.SetActive(true);
         yield return new WaitForSeconds(4);
-        _iConLucky.SetActive(false);
+        _iConSteelItem.SetActive(false);
         _isInvisible = false;
         _isActiveItem = false;
 

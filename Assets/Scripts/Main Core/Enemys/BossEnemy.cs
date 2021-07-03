@@ -4,6 +4,8 @@ public class BossEnemy : Enemy
 {
     [SerializeField]
     private GameObject _effect;
+    [SerializeField]
+    private ShowUp _showUP;
     private Rigidbody _rigidbodyBossEnemy;
     private bool _isRunning = false;
 
@@ -13,7 +15,7 @@ public class BossEnemy : Enemy
     }
     private void Update()
     {
-        if (!_isGameActive && !_isRunning)
+        if (_isGameActive == false && _isRunning == false)
         {
             Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
@@ -26,7 +28,7 @@ public class BossEnemy : Enemy
         }
 
         //check if item Explosion active then get effect
-        if (_isExplosion && !_isRunning)
+        if (_isExplosion && _isRunning == false)
         {
             _score++;
             _isChange = true;
@@ -52,7 +54,7 @@ public class BossEnemy : Enemy
             Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-        //enemy collider with mouse
+        //enemy collide with mouse
         else if (other.CompareTag("Mouse"))
         {
             _healthEnemy--;
@@ -62,6 +64,9 @@ public class BossEnemy : Enemy
 
                 _isChange = true;
                 Instantiate(_effect, transform.position, Quaternion.identity);
+                showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
+                var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
+                showUp.showUpScore = _enemyScore.ToString();
                 Destroy(gameObject);
             }
         }
@@ -69,12 +74,13 @@ public class BossEnemy : Enemy
 
     protected override void AddScoreWithTypeEnemy()
     {
-        _score+=4;
+        _score += _enemyScore;
+
     }
 
     protected override void GetDamgeWithTypeEnemy()
     {
-        _health-=4;
+        _health-=_damge;
     }
 
 }

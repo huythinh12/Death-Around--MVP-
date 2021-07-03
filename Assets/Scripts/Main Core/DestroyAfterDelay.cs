@@ -12,10 +12,4 @@ public class DestroyAfterDelay : MonoBehaviour
         _soundEffect.PlayOneShot(_onPickUpSound, 1);
         Destroy(gameObject, 2);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -66,14 +66,17 @@ MonoBehaviour:
   _rightSpawn: {fileID: 0}
   _leftSpawn: {fileID: 0}
   _player: {fileID: 0}
-  _iConLucky: {fileID: 0}
+  _iConSteelItem: {fileID: 0}
   _enemys: []
   _items: []
   _musicBG: {fileID: 0}
   _healthEnemy: 0
   _speed: 0
+  _damge: 0
+  _enemyScore: 0
   _direction: {x: 0, y: 0, z: 0}
   _effect: {fileID: 3480714595221328828, guid: ae20872715624714c97486f4d3cafeb4, type: 3}
+  _showUP: {fileID: 2032955916, guid: 22b064a0ce28caf419f97bbfdc9e02ac, type: 3}
 --- !u!82 &-4671011509356867379
 AudioSource:
   m_ObjectHideFlags: 0
@@ -219,7 +222,7 @@ MeshRenderer:
   m_GameObject: {fileID: 7098681175298341826}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0

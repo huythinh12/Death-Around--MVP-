@@ -3,9 +3,11 @@ using UnityEngine;
 public class NormalEnemy : Enemy
 {
     [SerializeField]
-    private GameObject effect;
-    private bool isRunning = false;
+    private GameObject _effect;
+    [SerializeField]
+    private ShowUp _showUP;
     private Rigidbody rigidbodyNormalEnemy;
+    private bool _isRunning = false;
 
     private void Start()
     {
@@ -13,11 +15,11 @@ public class NormalEnemy : Enemy
     }
     private void Update()
     {
-        if (!_isGameActive && !isRunning)
+        if (_isGameActive == false && _isRunning == false)
         {
-            Instantiate(effect, transform.position, Quaternion.identity);
+            Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
-            isRunning = true;
+            _isRunning = true;
         }
         else
         {
@@ -26,18 +28,18 @@ public class NormalEnemy : Enemy
         }
 
         //check if item Explosion active then get effect
-        if (_isExplosion && !isRunning)
+        if (_isExplosion && _isRunning == false)
         {
             _score++;
             _isChange = true;
-            isRunning = true;
-            Instantiate(effect, transform.position, Quaternion.identity);
+            _isRunning = true;
+            Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        //enemy collider with player
+        //enemy collide with player
         if (other.CompareTag("Player"))
         {
             if (!_isInvisible)
@@ -49,10 +51,10 @@ public class NormalEnemy : Enemy
             {
                 GameFinished();
             }
-            Instantiate(effect, transform.position, Quaternion.identity);
+            Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-        //enemy collider with mouse
+        //enemy collide with mouse
         else if (other.CompareTag("Mouse"))
         {
             _healthEnemy--;
@@ -61,7 +63,10 @@ public class NormalEnemy : Enemy
                 AddScoreWithTypeEnemy();
 
                 _isChange = true;
-                Instantiate(effect, transform.position, Quaternion.identity);
+                Instantiate(_effect, transform.position, Quaternion.identity);
+                showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
+                var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
+                showUp.showUpScore = _enemyScore.ToString();
                 Destroy(gameObject);
             }
         }
@@ -69,12 +74,12 @@ public class NormalEnemy : Enemy
 
     protected override void AddScoreWithTypeEnemy()
     {
-        _score+=2;
+        _score += _enemyScore;
     }
 
     protected override void GetDamgeWithTypeEnemy()
     {
-        _health-=2;
+        _health -= _damge;
     }
 
 }

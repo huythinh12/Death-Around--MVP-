@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: BossEnemy
   description: 
-  enemyPrefab: {fileID: 4611955300526865565, guid: b5ec55bdaadbf7d40aa7f6a4e53a4ca8, type: 3}
+  enemyPrefab: {fileID: 4611955300526730217, guid: b5ec55bdaadbf7d40aa7f6a4e53a4ca8, type: 3}
   _health: 1
-  _speed: 3.5
+  _speed: 4.5
+  _damge: 4
+  _scrore: 4

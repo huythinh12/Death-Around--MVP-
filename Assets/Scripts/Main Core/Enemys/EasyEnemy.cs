@@ -4,18 +4,22 @@ public class EasyEnemy : Enemy
 {
     [SerializeField]
     private GameObject _effect;
-    private bool _isRunning = false;
+    [SerializeField]
+    private ShowUp _showUP;
     private Rigidbody _rigidbodyEasyEnemy;
+    private bool _isRunning = false;
 
     private void Start()
     {
         _rigidbodyEasyEnemy = GetComponent<Rigidbody>();
+        
     }
     private void Update()
     {
-        if (!_isGameActive && !_isRunning)
+        if (_isGameActive == false && _isRunning == false)
         {
             Instantiate(_effect, transform.position, Quaternion.identity);
+          
             Destroy(gameObject);
             _isRunning = true;
         }
@@ -26,7 +30,7 @@ public class EasyEnemy : Enemy
         }
 
         //check if item Explosion active then get effect
-        if (_isExplosion && !_isRunning)
+        if (_isExplosion && _isRunning == false)
         {
             _score++;
             _isChange = true;
@@ -37,7 +41,7 @@ public class EasyEnemy : Enemy
     }
     private void OnTriggerEnter(Collider other)
     {
-        //enemy collider with player
+        //enemy collide with player
         if (other.CompareTag("Player"))
         {
             if (!_isInvisible)
@@ -52,7 +56,7 @@ public class EasyEnemy : Enemy
             Instantiate(_effect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
-        //enemy collider with mouse
+        //enemy collide with mouse
         else if (other.CompareTag("Mouse"))
         {
             _healthEnemy--;
@@ -62,19 +66,23 @@ public class EasyEnemy : Enemy
 
                 _isChange = true;
                 Instantiate(_effect, transform.position, Quaternion.identity);
-                Destroy(gameObject);
+                showUpPos = new Vector3(transform.position.x, transform.position.y + 0.3f, 0);
+                var showUp = Instantiate(_showUP, showUpPos, Quaternion.identity);
+                showUp.showUpScore = _enemyScore.ToString();
+                    Destroy(gameObject);
             }
         }
     }
 
     protected override void AddScoreWithTypeEnemy()
     {
-        _score++;
+        _score += _enemyScore;
+
     }
 
     protected override void GetDamgeWithTypeEnemy()
     {
-        _health--;
+        _health -= _damge;
     }
 
 

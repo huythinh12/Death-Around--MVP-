@@ -108,17 +108,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1777c13815f78bd4eb89c6fc91ff3f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightSpawn: {fileID: 0}
-  leftSpawn: {fileID: 0}
-  player: {fileID: 0}
-  iConLucky: {fileID: 0}
-  enemys: []
-  items: []
-  musicBG: {fileID: 0}
-  healthEnemy: 0
-  speed: 0
-  direction: {x: 0, y: 0, z: 0}
-  effect: {fileID: 3480714595221328828, guid: ae20872715624714c97486f4d3cafeb4, type: 3}
+  _rightSpawn: {fileID: 0}
+  _leftSpawn: {fileID: 0}
+  _player: {fileID: 0}
+  _iConSteelItem: {fileID: 0}
+  _enemys: []
+  _items: []
+  _musicBG: {fileID: 0}
+  _healthEnemy: 0
+  _speed: 0
+  _damge: 0
+  _enemyScore: 0
+  _direction: {x: 0, y: 0, z: 0}
+  _effect: {fileID: 3480714595221328828, guid: ae20872715624714c97486f4d3cafeb4, type: 3}
+  _showUP: {fileID: 2032955916, guid: 22b064a0ce28caf419f97bbfdc9e02ac, type: 3}
 --- !u!82 &-137469590361647010
 AudioSource:
   m_ObjectHideFlags: 0
@@ -264,7 +267,7 @@ MeshRenderer:
   m_GameObject: {fileID: 4425564560239379914}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0

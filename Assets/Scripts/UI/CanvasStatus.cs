@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 using TMPro;
 
@@ -11,6 +12,8 @@ public class CanvasStatus : MonoBehaviour
     private TMP_Text _txtHealth;
     [SerializeField]
     private TMP_Text _txtLevel;
+    private StringBuilder sbScore = new StringBuilder("Score: x"); 
+    private StringBuilder sbLevel = new StringBuilder("Level: x"); 
 
     private void Start()
     {
@@ -27,8 +30,14 @@ public class CanvasStatus : MonoBehaviour
         if (health < 0)
             health = 0;
         _txtHealth.text = health.ToString();
-        _txtScore.text = "Score: " + score.ToString();
-        _txtLevel.text = "Level: " + level.ToString();
+
+        _txtScore.text = sbScore.Replace("x",score.ToString()).ToString();
+        _txtLevel.text = sbLevel.Replace("x",level.ToString()).ToString();
+
+        sbScore.Clear();
+        sbLevel.Clear();
+        sbScore.Append("Score: x");
+        sbLevel.Append("Level: x");
     }
 
     private void OnEnable()

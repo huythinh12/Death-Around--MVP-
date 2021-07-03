@@ -23,7 +23,6 @@ public class CanvasManager : MonoBehaviour
     private Slider _sliderVolume;
     private DataPlayer _dataPlayer;
     private int _difficultySelect = 1;
-    private float _volume;
 
     // Start is called before the first frame update
     void Start()

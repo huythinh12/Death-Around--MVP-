@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -11,6 +12,7 @@ public class CanvasTimer : MonoBehaviour
     private TMP_Text _txtNotification;
     private int _waveCount = 1;
     public static event Action<bool> EventTimer;
+    private StringBuilder sbTime = new StringBuilder("Time: x");
 
     private void OnEnable()
     {
@@ -19,7 +21,9 @@ public class CanvasTimer : MonoBehaviour
   
     private void HandleTimer(int time,bool isGameActive)
     {
-        _txtTime.text = "Time: " + time;
+        _txtTime.text = sbTime.Replace("x",time.ToString()).ToString();
+        sbTime.Clear();
+        sbTime.Append("Time: x");
         //time out 
         if (time <= 0 && !isGameActive)
         {

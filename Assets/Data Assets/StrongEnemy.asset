@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: StrongEnemy
   description: 
-  enemyPrefab: {fileID: 4242198046831973900, guid: ae65a372683463547a13176c60d551db, type: 3}
+  enemyPrefab: {fileID: 4242198046832008384, guid: ae65a372683463547a13176c60d551db, type: 3}
   _health: 1
-  _speed: 3
+  _speed: 4
+  _damge: 3
+  _scrore: 3

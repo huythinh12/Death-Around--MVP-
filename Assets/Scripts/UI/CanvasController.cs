@@ -34,7 +34,6 @@ public class CanvasController : MonoBehaviour
             _canvasCompleted.SetActive(true);
         }
     }
-
     public void OnClickMenu()
     {
         _penalMenu.SetActive(true);
